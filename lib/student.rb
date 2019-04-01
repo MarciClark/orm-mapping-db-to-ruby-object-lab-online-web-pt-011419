@@ -102,11 +102,14 @@ class Student
     end.first
   end
   
-   def self.all_students_in_grade_x(x)
-    sql = "SELECT * 
-    FROM students 
-    WHERE grade = ?"
-    DB[:conn].execute(sql, x)
+  def self.all_students_in_grade_x(grade)
+    sql = <<-SQL
+      SELECT * FROM students
+      WHERE grade = ?
+      SQL
+    DB[:conn].execute(sql, grade).map do |row|
+        self.new_from_db(row)
+      end
     end
   end
-
+end
