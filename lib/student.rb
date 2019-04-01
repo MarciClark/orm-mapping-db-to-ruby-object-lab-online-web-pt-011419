@@ -114,4 +114,4 @@ class Student
       DB[:conn].execute(sql, grade).map do |row|
         self.new_from_database(row)
   end
-end
+
