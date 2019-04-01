@@ -111,6 +111,6 @@ def self.all_students_in_grade_x(grade)
       WHERE grade = ?
       SQL
 
-      DB[:conn].execute(sql, grade)
+      DB[:conn].execute(sql, grade).map
   end
 end
